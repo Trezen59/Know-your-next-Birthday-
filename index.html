@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days until next bday</title>
+    <style>
+        .main-form {
+            border: 1px solid black;
+            width: 400px;
+            height: 300px;
+            text-align: left;
+            padding: 20px;
+            margin: auto;
+            margin-top: 5%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+            background-color: rgb(179, 179, 179);
+            font-size: 30px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 5%;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        button {
+            height: 40px;
+            width: 100px;
+            border-radius: 10px;
+            color: white;
+            background-color: black;
+
+        }
+
+        input[type=number] {
+            box-sizing: border-box;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        @media screen and (max-width: 800px) {
+            .main-form {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>How many days are left to your next birthday?</h1>
+    <div class="main-form">
+        <form action="#" onsubmit="return nextbday()">
+            <label for="date">Date </label>
+            <input type="number" id="date"><br><br>
+            <label for="month">Month </label>
+            <input type="number" id="month"><br><br>
+            <button type="submit" class="submit">Calculate</button>
+        </form>
+    </div>
+
+
+</body>
+<script>
+    function nextbday(date, month) {
+
+        var myBirthday, today, bday, diff, days, date, month;
+        date = document.getElementById("date").value;
+        month = document.getElementById("month").value;
+
+        myBirthday = [date, month];
+        today = new Date();
+        bday = new Date(today.getFullYear(), myBirthday[1] - 1, myBirthday[0]);
+        if (today.getTime() > bday.getTime()) {
+            bday.setFullYear(bday.getFullYear() + 1);
+        }
+        diff = bday.getTime() - today.getTime();
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        alert(days + " days until next birthday!");
+    }
+
+</script>
+
+</html>
